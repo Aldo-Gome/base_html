@@ -12,7 +12,73 @@
             </ul>
         </nav>
         <header>
-          <h1> Welcome to My Website</h1>
+            <main>
+                <h1>Welcome to My Website</h1>
+                <p>This is a simple website created using HTML.</p>
+                <form action="submit_form.php" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required><br><br>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br><br>
+                    <input type="submit" value="Submit">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <select name="gender" id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="checkbox" id="subscribe" name="subscribe" value="yes">
+                    <label for="subscribe">Subscribe to newsletter</label>
+                    <optgroup label="Fruits">
+                        <option value="apple">Apple</option>
+                        <option value="banana">Banana</option>
+                        <option value="orange">Orange</option>
+                    </optgroup>
+
+                    <input type="radio" id="option1" name="options" value="option1">
+                    <label for="option1">Option 1</label><br>
+                    <input type="radio" id="option2" name="options" value="option2">
+                    <label for="option2">Option 2</label><br>
+                    <input type="radio" id="option3" name="options" value="option3">
+                    <label for="option3">Option 3</label><br>
+
+                    <textarea id="message" name="message" rows="4" cols="50" placeholder="Enter your message here..."></textarea><br><br>
+
+                    <input type="number" id="age" name="age" min="1" max="100" required><br>
+                    <input type="date" id="dob" name="dob" required><br>
+                    <input type="file" id="fileUpload" name="fileUpload" accept=".jpg, .jpeg, .png, .pdf"><br>
+                    <input type="color" id="favcolor" name="favcolor"><br>
+                    <input type="range" id="volume"  name="volume" min="0" max="100" ><br>
+                    <input type="search" id="search" name="search" placeholder="Search..."><br>
+                    
+
+
+                    <button type="submit">Submit</button>
+                </form>
+
+                <label for="username"> DATOS DE SALIDA </label>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Header 1</th>
+                            <th>Header 2</th>
+                            <th>Header 3</th>
+                            <th>Header 4</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data 1</td>
+                            <td>Data 2</td>
+                            <td>Data 3</td>
+                            <td>Data 4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+
         </header>
     </body>
 
