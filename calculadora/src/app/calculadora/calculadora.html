@@ -1,1 +1,29 @@
-<p>calculadora works!</p>
+<div class="calculadora-contenedor">
+  <!-- Pantalla que muestra el valor y un posible indicador de cálculo -->
+  <div class="pantalla" [attr.data-previa]="operador ? (primerOperando + ' ' + (operador === '*' ? '×' : operador === '/' ? '÷' : operador)) : ''">{{ pantalla }}</div>
+
+  <div class="teclado">
+    <button (click)="limpiar()" class="btn-limpiar">C</button>
+    <button (click)="seleccionarOperacion('/')" class="btn-operador">÷</button>
+    <button (click)="seleccionarOperacion('*')" class="btn-operador">×</button>
+    <button (click)="seleccionarOperacion('-')" class="btn-operador">-</button>
+
+    <button (click)="agregarNumero('7')">7</button>
+    <button (click)="agregarNumero('8')">8</button>
+    <button (click)="agregarNumero('9')">9</button>
+    <button (click)="seleccionarOperacion('+')" class="btn-operador">+</button>
+
+    <button (click)="agregarNumero('4')">4</button>
+    <button (click)="agregarNumero('5')">5</button>
+    <button (click)="agregarNumero('6')">6</button>
+    <!-- El igual se mantiene ocupando 2 filas a la derecha, muy al estilo iOS/macOS -->
+    <button (click)="seleccionarOperacion('=')" class="btn-operador igual">=</button>
+
+    <button (click)="agregarNumero('1')">1</button>
+    <button (click)="agregarNumero('2')">2</button>
+    <button (click)="agregarNumero('3')">3</button>
+    
+    <button (click)="agregarNumero('0')" class="cero">0</button>
+    <button (click)="agregarDecimal()">.</button>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+/* Contenedor principal de la calculadora */
+.calculadora-contenedor {
+  width: 320px;
+  margin: 60px auto;
+  background: linear-gradient(145deg, #1e1e24, #121214);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Área de visualización moderna */
+.pantalla {
+  background-color: #0b0b0c;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: right;
+  padding: 24px 18px 16px 18px;
+  border-radius: 18px;
+  margin-bottom: 24px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  word-wrap: break-word;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Puedes añadir un pequeño indicador para la operación previa */
+.pantalla::before {
+  content: attr(data-previa);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+/* Distribución del teclado en Grid */
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Estilo base de los botones */
+button {
+  background-color: #2c2c2e;
+  color: #f5f5f7;
+  border: none;
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estados interactivos */
+button:hover {
+  background-color: #3a3a3c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón de limpiar (C) - Tono carmesí elegante */
+.btn-limpiar {
+  background-color: rgba(255, 69, 58, 0.15);
+  color: #ff453a;
+  border: 1px solid rgba(255, 69, 58, 0.3);
+}
+
+.btn-limpiar:hover {
+  background-color: rgba(255, 69, 58, 0.25);
+}
+
+/* Operadores (+, -, ×, ÷) - Naranja vibrante pero profesional */
+.btn-operador {
+  background-color: #ff9f0a;
+  color: #ffffff;
+}
+
+.btn-operador:hover {
+  background-color: #ffb340;
+}
+
+/* Botón Igual (=) - Verde moderno, ocupa un espacio vertical grande */
+.igual {
+  background-color: #30d158;
+  color: #ffffff;
+  grid-row: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.igual:hover {
+  background-color: #34e062;
+}
+
+/* Cero (0) alargado horizontalmente */
+.cero {
+  grid-column: span 2;
+}
+
+/* Estilo para los números normales */
+button:not(.btn-operador):not(.btn-limpiar):not(.igual) {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+button:not(.btn-operador):not(.btn-limpiar):not(.igual):hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
