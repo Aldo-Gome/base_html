@@ -1,0 +1,72 @@
+<main>
+  <h1>Agenda de Tareas</h1>
+  <button type="button" (click)="cerrarSesion()">Cerrar sesión</button>
+
+  @if (indiceEditar === -1) {
+    <h2>Registrar tarea</h2>
+  } @else {
+    <h2>Editar tarea</h2>
+  }
+
+  <form (ngSubmit)="guardar()">
+    <label for="titulo">Título</label>
+    <input id="titulo" name="titulo" type="text" [(ngModel)]="titulo" required>
+
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" name="descripcion" rows="3" [(ngModel)]="descripcion" required></textarea>
+
+    <label for="fechaLimite">Fecha Límite</label>
+    <input id="fechaLimite" name="fechaLimite" type="date" [(ngModel)]="fechaLimite" required>
+
+    <label for="estado">Estado</label>
+    <select id="estado" name="estado" [(ngModel)]="estado" required>
+      <option value="Pendiente">Pendiente</option>
+      <option value="Completada">Completada</option>
+    </select>
+
+    @if (indiceEditar === -1) {
+      <button type="submit">Guardar</button>
+      <button type="button" (click)="limpiar()">Limpiar</button>
+    } @else {
+      <button type="submit">Actualizar</button>
+      <button type="button" (click)="limpiar()">Cancelar</button>
+    }
+  </form>
+
+  <h2>Tareas registradas</h2>
+  
+  @if (tareas.length === 0) {
+    <p>No hay tareas registradas.</p>
+  } @else {
+    <p>Total de tareas: {{ tareas.length }}</p>
+    <div class="tabla">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Fecha Límite</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (t of tareas; track t.id; let i = $index) {
+            <tr>
+              <td>{{ t.id }}</td>
+              <td>{{ t.titulo }}</td>
+              <td>{{ t.descripcion }}</td>
+              <td>{{ t.fechaLimite }}</td>
+              <td>{{ t.estado }}</td>
+              <td>
+                <button type="button" (click)="editar(i)">Editar</button>
+                <button type="button" (click)="eliminar(i)">Eliminar</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</main>
