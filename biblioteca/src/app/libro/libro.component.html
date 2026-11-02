@@ -1,1 +1,69 @@
-<p>libro works!</p>
+<main>
+  <h1>Catálogo de Biblioteca</h1>
+  <button type="button" (click)="cerrarSesion()">Cerrar sesión</button>
+
+  @if (indiceEditar === -1) {
+    <h2>Registrar libro</h2>
+  } @else {
+    <h2>Editar libro</h2>
+  }
+
+  <form (ngSubmit)="guardar()">
+    <label for="codigo">Código</label>
+    <input id="codigo" name="codigo" type="text" [(ngModel)]="codigo" required>
+
+    <label for="titulo">Título</label>
+    <input id="titulo" name="titulo" type="text" [(ngModel)]="titulo" required>
+
+    <label for="autor">Autor</label>
+    <input id="autor" name="autor" type="text" [(ngModel)]="autor" required>
+
+    <label for="anio">Año de publicación</label>
+    <input id="anio" name="anio" type="number" min="1000" max="9999" step="1" [(ngModel)]="anio" required>
+
+    @if (indiceEditar === -1) {
+      <button type="submit">Guardar</button>
+      <button type="button" (click)="limpiar()">Limpiar</button>
+    } @else {
+      <button type="submit">Actualizar</button>
+      <button type="button" (click)="limpiar()">Cancelar</button>
+    }
+  </form>
+
+  <h2>Libros registrados</h2>
+  
+  @if (libros.length === 0) {
+    <p>No hay libros registrados en el catálogo.</p>
+  } @else {
+    <p>Total de ejemplares: {{ libros.length }}</p>
+    <div class="tabla">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Año</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (libro of libros; track libro.id; let i = $index) {
+            <tr>
+              <td>{{ libro.id }}</td>
+              <td>{{ libro.codigo }}</td>
+              <td>{{ libro.titulo }}</td>
+              <td>{{ libro.autor }}</td>
+              <td>{{ libro.anio }}</td>
+              <td>
+                <button type="button" (click)="editar(i)">Editar</button>
+                <button type="button" (click)="eliminar(i)">Eliminar</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</main>
