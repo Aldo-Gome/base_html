@@ -1,0 +1,69 @@
+<main>
+  <h1>Registro de Estudiantes</h1>
+  <button type="button" (click)="cerrarSesion()">Cerrar sesión</button>
+
+  @if (indiceEditar === -1) {
+    <h2>Registrar estudiante</h2>
+  } @else {
+    <h2>Editar estudiante</h2>
+  }
+
+  <form (ngSubmit)="guardar()">
+    <label for="cuenta">Número de Cuenta</label>
+    <input id="cuenta" name="cuenta" type="text" [(ngModel)]="cuenta" required>
+
+    <label for="nombre">Nombre</label>
+    <input id="nombre" name="nombre" type="text" [(ngModel)]="nombre" required>
+
+    <label for="carrera">Carrera</label>
+    <input id="carrera" name="carrera" type="text" [(ngModel)]="carrera" required>
+
+    <label for="fechaIngreso">Fecha de Ingreso</label>
+    <input id="fechaIngreso" name="fechaIngreso" type="date" [(ngModel)]="fechaIngreso" required>
+
+    @if (indiceEditar === -1) {
+      <button type="submit">Guardar</button>
+      <button type="button" (click)="limpiar()">Limpiar</button>
+    } @else {
+      <button type="submit">Actualizar</button>
+      <button type="button" (click)="limpiar()">Cancelar</button>
+    }
+  </form>
+
+  <h2>Estudiantes registrados</h2>
+  
+  @if (estudiantes.length === 0) {
+    <p>No hay estudiantes registrados.</p>
+  } @else {
+    <p>Total de estudiantes: {{ estudiantes.length }}</p>
+    <div class="tabla">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cuenta</th>
+            <th>Nombre</th>
+            <th>Carrera</th>
+            <th>Fecha de Ingreso</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (est of estudiantes; track est.id; let i = $index) {
+            <tr>
+              <td>{{ est.id }}</td>
+              <td>{{ est.cuenta }}</td>
+              <td>{{ est.nombre }}</td>
+              <td>{{ est.carrera }}</td>
+              <td>{{ est.fechaIngreso }}</td>
+              <td>
+                <button type="button" (click)="editar(i)">Editar</button>
+                <button type="button" (click)="eliminar(i)">Eliminar</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</main>
